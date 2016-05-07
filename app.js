@@ -8,6 +8,7 @@ var express = require('express');
     var router = express.Router();
         
     app.use(configuration.api, router);
+    app.use(configuration.galleryEntryPoint, express.static(configuration.galleryRoot));
     app.listen(configuration.port, function () {
         console.log('Running on port '+ configuration.port);
     });

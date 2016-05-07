@@ -5,22 +5,23 @@ function Gallery() {
     var fs = require('fs');
     var path = require('path');
     
-    _gallery.buildThumbPath = function(dir, fullPath) {
-        var extension = path.extname(fullPath);
-        var fileName = path.basename(fullPath, extension);
+    _gallery.buildThumbPath = function(relative) {
+        var extension = path.extname(relative);
+        var fileName = path.basename(relative, extension);
 
-        return path.join(dir, configuration.thumbsDir, extension.replace('.', ''), fileName + ".jpg");
+        return path.join(path.dirname(relative), configuration.thumbsDir, extension.replace('.', ''), fileName + ".jpg");
     }
 
     _gallery.buildList = function(dir, files) {
         var ret = [];
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            var fullPath = dir + '/' + file;
-                
+            var fullPath = path.join(dir, file);
+            
+            var relative = fullPath.substring(configuration.galleryRoot.length-1);
             ret.push({
-                        name: path.join(fullPath),
-                        thumb: _gallery.buildThumbPath(dir, fullPath)
+                        name: path.join(relative),
+                        thumb: _gallery.buildThumbPath(relative)
             });
         }
         
@@ -37,12 +38,10 @@ function Gallery() {
                 return !fs.statSync(path.join(basedir, file)).isDirectory();
             });
             
-            console.log(files);
-            
-            res.setHeader('Content-Type', 'application/json');
             var response = {
                 files: _gallery.buildList(basedir, files)
             };
+            
             res.json(response.files);
         }
     }
