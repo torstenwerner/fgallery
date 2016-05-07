@@ -22,14 +22,14 @@ performResize () {
 # Takes one argument: the directory that contains the files
 resizeFiles () {
     [[ -d "$1/thumbs" ]] || mkdir "$1/thumbs"
-    for file in "$1"/*; do
+    for file in "$1"/*.jpg "$1"/*.png "$1"/*.gif; do
         if [ -f "$file" ]; then
             filename=$(basename "$file")
             extension="${filename##*.}"
             [[ -d "$1/thumbs/$extension" ]] || mkdir "$1/thumbs/$extension"
             thumbname="$1/thumbs/$extension/$filename";
             if [ ! -f  "$thumbname" ]; then
-                convert $file -resize $SIZE "$thumbname"
+                convert "$file"[0] -resize $SIZE "$thumbname"
             fi
         fi
     done
