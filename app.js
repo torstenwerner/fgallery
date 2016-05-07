@@ -21,4 +21,8 @@ var express = require('express');
     .route('/list/:directory')
     .get(gallery.list);
     
+    router
+    .route('/directories')
+    .get(gallery.listDirectories);
+    
 })();

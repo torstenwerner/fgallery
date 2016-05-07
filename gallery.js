@@ -28,10 +28,28 @@ function Gallery() {
         return ret;
     }
     
+    _gallery.buildDirectoriesList = function(dir) {
+        var ret = [];
+        var files = fs.readdirSync(dir).filter(function(file) {
+                return fs.statSync(path.join(dir, file)).isDirectory() && file != configuration.thumbsDir;
+            });
+
+        for (var i = 0; i < files.length; i++) {
+            var relative = path.join(dir, files[i]).substring(configuration.galleryRoot.length-1);
+            ret.push({
+                path: path.join(relative),
+                name: path.basename(relative)
+            });
+            
+            ret = ret.concat(_gallery.buildDirectoriesList(path.join(dir, files[i])));
+        }
+        
+        return ret;
+    }
+    
     return {
         list: function(req, res) {
             var requestedDirectory = req.params.directory || '';
-            console.log (requestedDirectory);
             var basedir = path.join(configuration.galleryRoot, requestedDirectory);
             
             var files = fs.readdirSync(basedir).filter(function(file) {
@@ -43,6 +61,14 @@ function Gallery() {
             };
             
             res.json(response.files);
+        },
+        
+        listDirectories: function(req, res) {
+            var response = {
+              dirs: _gallery.buildDirectoriesList(configuration.galleryRoot).concat([{ path: '', name: '/'}])
+            };
+            
+            res.json(response.dirs);
         }
     }
 }
