@@ -27,5 +27,9 @@
     "webm"
   ],
   "author": "Francesco Ozzimo",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/francescorw/fgallery.git"
+  }
 }
