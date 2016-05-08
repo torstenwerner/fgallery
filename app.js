@@ -8,6 +8,7 @@ var express = require('express');
     var router = express.Router();
         
     app.use(configuration.api, router);
+    app.use('/', express.static(app.settings.env === "production" ? "www" : "ui"));
     app.use(configuration.galleryEntryPoint, express.static(configuration.galleryRoot));
     app.listen(configuration.port, function () {
         console.log('Running on port '+ configuration.port);

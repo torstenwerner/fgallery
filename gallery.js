@@ -19,9 +19,23 @@ function Gallery() {
             var fullPath = path.join(dir, file);
             
             var relative = fullPath.substring(configuration.galleryRoot.length-1);
+            
+            var type;
+            switch (path.extname(file).replace('.', '')) {
+                case 'webm':
+                case 'mp4':
+                case 'gif':
+                    type = 'video';
+                    break;
+                default:
+                    type = 'image';
+                    break;
+            }
+            
             ret.push({
-                        name: path.join(relative),
-                        thumb: _gallery.buildThumbPath(relative)
+                        name: path.join(configuration.galleryEntryPoint, path.join(relative)),
+                        thumb: path.join(configuration.galleryEntryPoint, _gallery.buildThumbPath(relative)),
+                        type: type
             });
         }
         
@@ -65,7 +79,7 @@ function Gallery() {
         
         listDirectories: function(req, res) {
             var response = {
-              dirs: _gallery.buildDirectoriesList(configuration.galleryRoot).concat([{ path: '', name: '/'}])
+              dirs: [{ path: '', name: '/'}].concat(_gallery.buildDirectoriesList(configuration.galleryRoot))
             };
             
             res.json(response.dirs);

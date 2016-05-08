@@ -1,0 +1,67 @@
+<!doctype html>
+<head>
+    <title>fgallery</title>
+    <!-- build:css style.css -->
+    <link rel="stylesheet" href="css/angular-material.css"/>
+    <!-- endbuild -->
+</head>
+<body ng-app="fgallery" ng-controller="GalleryController as Gallery">
+    <md-content>
+        <md-toolbar layout="row" md-scroll-shrink="true">
+            <div class="md-toolbar-tools blue">
+                <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleNav()">
+                    <md-icon md-svg-icon="/icons/menu.svg" />
+                </md-button>
+                <span>Gallery</span>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+    </md-content>
+    
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-toolbar class="md-accent">
+            <div class="md-toolbar-tools">
+                <h3>Galleries</h3>
+            </div>
+        </md-toolbar>
+        <md-content ng-repeat="directory in galleries">
+            <md-button ng-click="getFiles(directory.path)">
+                <md-icon md-svg-icon="/icons/photo_library.svg"></md-icon>
+                {{directory.name}}
+            </md-button>
+        </md-content>
+    </md-sidenav>
+    
+    <md-content layout-padding>
+        <md-grid-list
+        md-cols-gt-md="8" md-cols="3" md-cols-md="8"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+            <md-grid-tile
+            ng-repeat="file in files"
+            md-colspan-gt-sm="1"
+            md-rowspan-gt-sm="1"
+            ng-style="{
+                'background-image': 'url(' + file.thumb + ')'
+            }"
+            ng-click="open(file.name)">
+                <md-grid-tile-footer>
+                    <md-icon md-svg-icon="/icons/{{file.type}}.svg" />
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </md-content>
+    <!-- <div ng-view></div> -->
+    <!-- build:js app.js -->
+    <script type="text/javascript" src="lib/angular.js"></script>
+    <script type="text/javascript" src="lib/angular-animate.js"></script>
+    <script type="text/javascript" src="lib/angular-aria.js"></script>
+    <script type="text/javascript" src="lib/angular-material.js"></script>
+    <script type="text/javascript" src="lib/angular-messages.js"></script>
+    
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="services/galleryService.js"></script>
+    <script type="text/javascript" src="controllers/galleryController.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
