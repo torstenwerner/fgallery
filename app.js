@@ -1,5 +1,5 @@
 var configuration = require('./config');
-var gm = new require('./Gallery');
+var gm = new require('./gallery');
 var gallery = new gm();
 var express = require('express');
 
