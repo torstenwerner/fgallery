@@ -24,7 +24,7 @@ It exposes the gallery.
 It is the gallery itself.
 
 ## Why
-I needed a gallery for family/vacation pictures and videos and I didn't found anything that I liked.
+I needed a gallery for family/vacation pictures and videos and I didn't find anything that I liked.
 
 At first I thought of generating the missing thumbnails on-demand, but I realized that it was too expensive.
 So I decided, given that I will not upload new contents very often, that I could generate the thumbnails every *n* hours by calling two bash scripts.
