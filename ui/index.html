@@ -42,7 +42,9 @@
             md-colspan-gt-sm="1"
             md-rowspan-gt-sm="1"
             ng-style="{
-                'background-image': 'url(' + file.thumb + ')'
+                'background-image': 'url(' + file.thumb + ')',
+                'background-repeat': 'no-repeat',
+                'background-size': '100% auto'
             }"
             ng-click="open(file.name)">
                 <md-grid-tile-footer>
