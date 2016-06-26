@@ -52,7 +52,7 @@ function Gallery() {
             var relative = path.join(dir, files[i]).substring(configuration.galleryRoot.length-1);
             ret.push({
                 path: path.join(relative).replace('/', '%2F'),
-                name: path.basename(relative)
+                name: path.join(relative)
             });
             
             ret = ret.concat(_gallery.buildDirectoriesList(path.join(dir, files[i])));
