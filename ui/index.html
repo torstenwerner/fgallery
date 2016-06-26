@@ -9,17 +9,32 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
 </head>
 <body ng-app="fgallery" ng-controller="GalleryController as Gallery">
-    <md-content>
+    <md-content layout="column">
         <md-toolbar layout="row" md-scroll-shrink="true">
             <div class="md-toolbar-tools blue">
                 <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleNav()">
                     <md-icon md-svg-icon="/icons/menu.svg" />
                 </md-button>
                 <span id="title-gallery">Gallery</span>
-                <span id="current-gallery">
+                <span id="current-gallery" hide show-xl>
                         {{currentDir | slashify}}
                 </span>
                 <span flex></span>
+                <md-fab-speed-dial md-open="false" md-direction="left" class="md-scale" ng-class="md-fling" aria-label="Filter">
+                    <md-fab-trigger>
+                        <md-button aria-label="filter" class="md-fab md-secondary">
+                            <md-icon md-svg-src="/icons/filter.svg"></md-icon>
+                        </md-button>
+                    </md-fab-trigger>
+                    <md-fab-actions>
+                        <md-button aria-label="Images" class="md-fab md-raised md-mini" ng-click="currentFilter = 'image'" ng-class="currentFilter == 'image' ? 'active-filter' : ''">
+                            <md-icon md-svg-src="/icons/image.svg" aria-label="Image"></md-icon>
+                        </md-button>
+                        <md-button aria-label="Videos" class="md-fab md-raised md-mini" ng-click="currentFilter = 'video'" ng-class="currentFilter == 'video' ? 'active-filter' : ''">
+                            <md-icon md-svg-src="/icons/video.svg" aria-label="Video"></md-icon>
+                        </md-button>
+                    </md-fab-actions>
+                </md-fab-speed-dial>
             </div>
         </md-toolbar>
     </md-content>
@@ -37,14 +52,18 @@
             </md-button>
         </md-content>
     </md-sidenav>
-    
+
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="loading">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
     <md-content layout-padding>
         <md-grid-list
         md-cols-gt-md="8" md-cols="3" md-cols-md="8"
         md-row-height-gt-md="1:1" md-row-height="4:3"
         md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
             <md-grid-tile
-            ng-repeat="file in files"
+            ng-repeat="file in files | filter: {type: currentFilter} || !currentFilter"
             md-colspan-gt-sm="1"
             md-rowspan-gt-sm="1"
             ng-style="{
