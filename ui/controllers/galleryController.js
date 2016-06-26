@@ -2,6 +2,8 @@
     'use strict';
     
     var galleryController = function($scope, GalleryService, $mdSidenav) {
+        $scope.currentDir = "";
+
         GalleryService.getAvailableGalleries()
         .then(function(res) {
             $scope.galleries = res.data;
@@ -15,6 +17,7 @@
             GalleryService.getFiles(dir)
             .then(function(res) {
                 $scope.files = res.data;
+                $scope.currentDir = dir;
             });
         }
         

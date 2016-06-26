@@ -2,7 +2,9 @@
 <head>
     <title>fgallery</title>
     <!-- build:css style.css -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/angular-material.css"/>
+    <link rel="stylesheet" href="css/fgallery.css"/>
     <!-- endbuild -->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
 </head>
@@ -13,7 +15,10 @@
                 <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleNav()">
                     <md-icon md-svg-icon="/icons/menu.svg" />
                 </md-button>
-                <span>Gallery</span>
+                <span id="title-gallery">Gallery</span>
+                <span id="current-gallery">
+                        {{currentDir | slashify}}
+                </span>
                 <span flex></span>
             </div>
         </md-toolbar>
@@ -63,6 +68,7 @@
     <script type="text/javascript" src="lib/angular-messages.js"></script>
     
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="filters/slashify.js"></script>
     <script type="text/javascript" src="services/galleryService.js"></script>
     <script type="text/javascript" src="controllers/galleryController.js"></script>
     <!-- endbuild -->
