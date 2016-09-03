@@ -8,6 +8,7 @@
 SIZE="120x120"
 ROOTDIR="./gallery"
 THUMBSDIR="thumbs"
+IFS=$(echo -en "\n\b")
 
 # Takes one argument: the directory to start from
 performResize () {

@@ -9,6 +9,7 @@ SIZE="120x120"
 ROOTDIR="./gallery"
 THUMBSDIR="thumbs"
 FRAMEAT="1" # Seek to 1 second
+IFS=$(echo -en "\n\b")
 
 
 
