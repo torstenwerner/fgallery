@@ -25,6 +25,7 @@ function Gallery() {
                 case 'webm':
                 case 'mp4':
                 case 'gif':
+                case 'avi':
                     type = 'video';
                     break;
                 default:

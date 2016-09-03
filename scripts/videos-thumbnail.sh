@@ -26,7 +26,7 @@ performResize () {
 # Takes one argument: the directory that contains the files
 resizeFiles () {
     [[ -d "$1/$THUMBSDIR" ]] || mkdir "$1/$THUMBSDIR"
-    for file in "$1"/*.mp4 "$1"/*.webm; do
+    for file in "$1"/*.mp4 "$1"/*.webm "$1"/*.avi; do
         if [ -f "$file" ]; then
             filename=$(basename "$file")
             extension="${filename##*.}"
