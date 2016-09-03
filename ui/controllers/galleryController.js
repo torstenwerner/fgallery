@@ -31,6 +31,14 @@
         $scope.open = function(image) {
             window.open(image);
         }
+
+        $scope.getBackgroundImage = function(path) {
+            return {
+                'background-image': 'url(\"' + path + '\")',
+                'background-repeat': 'no-repeat',
+                'background-size': '100% auto'                
+            }
+        }
     };
     
     angular.module('fgallery-controllers').controller(

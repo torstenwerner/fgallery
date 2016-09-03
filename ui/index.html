@@ -66,11 +66,7 @@
             ng-repeat="file in files | filter: {type: currentFilter} || !currentFilter"
             md-colspan-gt-sm="1"
             md-rowspan-gt-sm="1"
-            ng-style="{
-                'background-image': 'url(' + file.thumb + ')',
-                'background-repeat': 'no-repeat',
-                'background-size': '100% auto'
-            }"
+            ng-style="getBackgroundImage(file.thumb)"
             ng-click="open(file.name)">
                 <md-grid-tile-footer>
                     <md-icon md-svg-icon="/icons/{{file.type}}.svg" />
