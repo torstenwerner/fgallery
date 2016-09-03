@@ -30,3 +30,7 @@ At first I thought of generating the missing thumbnails on-demand, but I realize
 So I decided, given that I will not upload new contents very often, that I could generate the thumbnails every *n* hours by calling two bash scripts.
 
 It's not amazing but it works.
+
+## Demo
+
+A demo is available [here](http://fgallery.selectstarfrom.space/).
