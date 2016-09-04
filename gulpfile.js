@@ -5,7 +5,7 @@ var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var origin = 'bower_components';
-var destinationJS = path.join('ui', 'scripts');
+var destinationJS = path.join('ui', 'lib');
 var destinationCSS = path.join('ui', 'css');
 
 gulp.task('moveDeps', function() {
