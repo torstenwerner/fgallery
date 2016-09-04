@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel, $controller) {
+    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel) {
         $scope.currentDir = "";
         $scope.currentFilter = "";
         $scope.loading = false;
@@ -60,6 +60,6 @@
     
     angular.module('fgallery-controllers').controller(
         'GalleryController',
-        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', '$controller', galleryController ]
+        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', galleryController ]
     );
 })();
