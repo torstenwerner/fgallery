@@ -80,7 +80,7 @@ function Gallery() {
         
         listDirectories: function(req, res) {
             var response = {
-              dirs: [{ path: '', name: '/'}].concat(_gallery.buildDirectoriesList(configuration.galleryRoot))
+              dirs: _gallery.buildDirectoriesList(configuration.galleryRoot)
             };
             
             res.json(response.dirs);
