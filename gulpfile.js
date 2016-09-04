@@ -41,4 +41,7 @@ gulp.task('buildProd', function() {
     
     gulp.src('ui/icons/*')
     .pipe(gulp.dest('www/icons'));
+
+    gulp.src('ui/views/*')
+    .pipe(gulp.dest('www/views'));
 });
