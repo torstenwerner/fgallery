@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    var galleryController = function($scope, GalleryService, $mdSidenav) {
+    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel, $controller) {
         $scope.currentDir = "";
         $scope.currentFilter = "";
         $scope.loading = false;
@@ -27,10 +27,6 @@
             $scope.loading = true;
             $mdSidenav('left').toggle();
         }
-        
-        $scope.open = function(image) {
-            window.open(image);
-        }
 
         $scope.getBackgroundImage = function(path) {
             return {
@@ -39,10 +35,31 @@
                 'background-size': '100% auto'                
             }
         }
+
+        $scope.showPanel = function(file) {
+            $mdPanel.open({
+                attachTo: angular.element(document.body),
+                controller: fgalleryglobals.panelController,    // mortal sin done because of reasons
+                                                                // 'PanelController' doesn't work (but it should)
+                                                                // Feel free to send a PR if you know do this the right way
+                controllerAs: 'ctrl',
+                disableParentScroll: true,
+                templateUrl: 'views/panel.html',
+                hasBackdrop: true,
+                panelClass: 'photo-panel',
+                position: $mdPanel.newPanelPosition().absolute().center(),
+                trapFocus: true,
+                zIndex: 150,
+                clickOutsideToClose: false, // will enable it, just have to figure out why sometimes it doesn't work
+                escapeToClose: false,
+                focusOnOpen: true,
+                fileObject: file
+            });
+        }
     };
     
     angular.module('fgallery-controllers').controller(
         'GalleryController',
-        [ '$scope', 'GalleryService', '$mdSidenav', galleryController ]
+        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', '$controller', galleryController ]
     );
 })();

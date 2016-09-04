@@ -1,0 +1,13 @@
+<div role="dialog" aria-label="Photo" layout="column" layout-align="center center">
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h2>{{ctrl.file.name}}</h2>
+        </div>
+        <md-button ng-click="ctrl.close()" aria-label="Close">
+            <md-icon md-svg-icon="/icons/close.svg"></md-icon>
+        </md-button>
+    </md-toolbar>
+    <div layout="row" >
+        <img flex class="photo-panel-img" alt="photo" ng-src="{{ctrl.file.name}}" ng-click="ctrl.open(ctrl.file.name)">
+    </div>
+</div>

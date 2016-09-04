@@ -67,7 +67,7 @@
             md-colspan-gt-sm="1"
             md-rowspan-gt-sm="1"
             ng-style="getBackgroundImage(file.thumb)"
-            ng-click="open(file.name)">
+            ng-click="showPanel(file)">
                 <md-grid-tile-footer>
                     <md-icon md-svg-icon="/icons/{{file.type}}.svg" />
                 </md-grid-tile-footer>
@@ -85,6 +85,7 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="filters/slashify.js"></script>
     <script type="text/javascript" src="services/galleryService.js"></script>
+    <script type="text/javascript" src="controllers/panelController.js"></script>
     <script type="text/javascript" src="controllers/galleryController.js"></script>
     <!-- endbuild -->
 </body>

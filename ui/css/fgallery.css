@@ -14,3 +14,17 @@ body {
 .active-filter {
     background-color: rgba(255, 222, 121, 0.96);
 }
+
+
+/* Photo panel */
+.photo-panel {
+    min-height: 500px;
+    background-color: #eee;
+    min-width: 600px;
+}
+
+.photo-panel-img {
+    max-width: 100%; 
+    height: auto;
+    cursor: pointer;
+}
