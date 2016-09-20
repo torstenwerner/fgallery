@@ -4,7 +4,14 @@ function Gallery() {
     var configuration = require('./config');
     var fs = require('fs');
     var path = require('path');
+    var fullRoot = path.resolve(configuration.galleryRoot);
     
+    _gallery.isInRoot = function(candidate) {
+        candidate = path.resolve(candidate);
+
+        return candidate.indexOf(fullRoot) === 0;
+    }
+
     _gallery.buildThumbPath = function(relative) {
         var extension = path.extname(relative);
         var fileName = path.basename(relative, extension);
@@ -67,6 +74,11 @@ function Gallery() {
             var requestedDirectory = req.params.directory || '';
             var basedir = path.join(configuration.galleryRoot, requestedDirectory);
             
+            if (!_gallery.isInRoot(basedir)) {
+                res.sendStatus(403);
+                return;
+            }
+
             var files = fs.readdirSync(basedir).filter(function(file) {
                 return !fs.statSync(path.join(basedir, file)).isDirectory();
             });
