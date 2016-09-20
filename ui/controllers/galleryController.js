@@ -39,9 +39,7 @@
         $scope.showPanel = function(file) {
             $mdPanel.open({
                 attachTo: angular.element(document.body),
-                controller: fgalleryglobals.panelController,    // mortal sin done because of reasons
-                                                                // 'PanelController' doesn't work (but it should)
-                                                                // Feel free to send a PR if you know do this the right way
+                controller: 'PanelController',
                 controllerAs: 'ctrl',
                 disableParentScroll: true,
                 templateUrl: 'views/panel.html',

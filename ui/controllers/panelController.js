@@ -17,8 +17,6 @@
     
     angular.module('fgallery-controllers').controller(
         'PanelController',
-        [ panelController ]
+        [ 'mdPanelRef', panelController ]
     );
-
-    fgalleryglobals.panelController = panelController;
 })();

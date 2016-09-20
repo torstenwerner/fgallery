@@ -1,5 +1,3 @@
-var fgalleryglobals = {};
-
 (function() {
     'use strict';
     
