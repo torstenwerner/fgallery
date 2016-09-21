@@ -18,9 +18,7 @@ body {
 
 /* Photo panel */
 .photo-panel {
-    min-height: 500px;
     background-color: #eee;
-    min-width: 600px;
 }
 
 .photo-panel-img {
