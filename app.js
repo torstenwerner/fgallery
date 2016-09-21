@@ -10,9 +10,6 @@ var express = require('express');
     app.use(configuration.api, router);
     app.use('/', express.static(app.settings.env === "production" ? "www" : "ui"));
     app.use(configuration.galleryEntryPoint, express.static(configuration.galleryRoot));
-    app.listen(configuration.port, function () {
-        console.log('Running on port '+ configuration.port);
-    });
     
     router
     .route('/list')
@@ -25,5 +22,7 @@ var express = require('express');
     router
     .route('/directories')
     .get(gallery.listDirectories);
+
+    module.exports = app;
     
 })();
