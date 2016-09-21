@@ -1,2 +1,4 @@
 .vscode
 gallery
+node_modules
+bower_components
