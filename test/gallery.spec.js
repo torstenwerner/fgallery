@@ -72,7 +72,7 @@ describe('gallery', function() {
         })
         .end(function(err, res) {
             if (err) return done(err);
-            console.log(res.body);
+
             done();
         });
     });
