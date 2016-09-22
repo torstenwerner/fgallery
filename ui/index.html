@@ -27,10 +27,13 @@
                         </md-button>
                     </md-fab-trigger>
                     <md-fab-actions>
-                        <md-button aria-label="Images" class="md-fab md-raised md-mini" ng-click="currentFilter = 'image'" ng-class="currentFilter == 'image' ? 'active-filter' : ''">
+                        <md-button aria-label="All" class="md-fab md-raised md-mini" ng-click="currentFilter = ''">
+                            <md-icon md-svg-src="/icons/filter-none.svg" aria-label="All"></md-icon>
+                        </md-button>
+                        <md-button aria-label="Images" class="md-fab md-raised md-mini" ng-click="currentFilter = 'image'">
                             <md-icon md-svg-src="/icons/image.svg" aria-label="Image"></md-icon>
                         </md-button>
-                        <md-button aria-label="Videos" class="md-fab md-raised md-mini" ng-click="currentFilter = 'video'" ng-class="currentFilter == 'video' ? 'active-filter' : ''">
+                        <md-button aria-label="Videos" class="md-fab md-raised md-mini" ng-click="currentFilter = 'video'">
                             <md-icon md-svg-src="/icons/video.svg" aria-label="Video"></md-icon>
                         </md-button>
                     </md-fab-actions>
