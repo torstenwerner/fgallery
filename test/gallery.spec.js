@@ -82,7 +82,9 @@ describe('gallery', function() {
         .get('/v1/list/..%2F')
         .expect(403)
         .end(function(err, res) {
-            if (err) throw err;
+            if (err) return done(err);
+
+            done();
         });
 
         request(app)
