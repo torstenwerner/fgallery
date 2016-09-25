@@ -82,20 +82,12 @@ function Gallery() {
             var files = fs.readdirSync(basedir).filter(function(file) {
                 return !fs.statSync(path.join(basedir, file)).isDirectory();
             });
-            
-            var response = {
-                files: _gallery.buildList(basedir, files)
-            };
-            
-            res.json(response.files);
+
+            res.json(_gallery.buildList(basedir, files));
         },
         
-        listDirectories: function(req, res) {
-            var response = {
-              dirs: _gallery.buildDirectoriesList(configuration.galleryRoot)
-            };
-            
-            res.json(response.dirs);
+        listDirectories: function(req, res) {            
+            res.json(_gallery.buildDirectoriesList(configuration.galleryRoot));
         }
     }
 }
