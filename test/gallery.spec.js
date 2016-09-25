@@ -77,7 +77,7 @@ describe('gallery', function() {
         });
     });
 
-    it('should not be allowed to go outside galleryRoot', function(done) {
+    it('should not be allowed to go outside galleryRoot (escaped)', function(done) {
         request(app)
         .get('/v1/list/..%2F')
         .expect(403)
@@ -86,7 +86,9 @@ describe('gallery', function() {
 
             done();
         });
+    });
 
+    it('should not be allowed to go outside galleryRoot', function(done) {
         request(app)
         .get('/v1/list/../')
         .expect(403)
