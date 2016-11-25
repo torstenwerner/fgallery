@@ -20,6 +20,10 @@ gulp.task('moveDeps', function() {
     // angular-aria
     gulp.src(path.join(origin, 'angular-aria', 'angular-aria.js'))
     .pipe(gulp.dest(destinationJS));
+
+    // angular-router
+    gulp.src(path.join(origin, 'angular-route', 'angular-route.js'))
+    .pipe(gulp.dest(destinationJS));
     
     // angular-material
     gulp.src(path.join(origin, 'angular-material', 'angular-material.js'))

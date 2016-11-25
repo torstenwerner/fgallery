@@ -1,0 +1,23 @@
+<md-content layout="column">
+  <md-toolbar layout="row" md-scroll-shrink="true">
+    <div class="md-toolbar-tools blue">
+      <span id="title-gallery">Gallery</span>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+</md-content>
+<div layout="column" layout-align="center center">
+  <form name="login">
+    <md-input-container class="md-block">
+      <label>Username</label>
+      <input required md-no-asterisk name="username" ng-model="loginModel.username">
+    </md-input-container>
+    <md-input-container class="md-block">
+      <label>Password</label>
+      <input type="password" required md-no-asterisk name="password" ng-model="loginModel.password">
+    </md-input-container>
+    <div>
+      <md-button type="submit">LOGIN</md-button>
+    </div>
+  </form>
+</div>

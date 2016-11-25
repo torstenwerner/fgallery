@@ -1,0 +1,68 @@
+<md-content layout="column">
+    <md-toolbar layout="row" md-scroll-shrink="true">
+        <div class="md-toolbar-tools blue">
+            <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleNav()">
+                <md-icon md-svg-icon="/icons/menu.svg" />
+            </md-button>
+            <span id="title-gallery">Gallery</span>
+            <span id="current-gallery" hide show-xl>
+                    {{currentDir | slashify}}
+            </span>
+            <span flex></span>
+            <md-fab-speed-dial md-open="false" md-direction="left" class="md-scale" ng-class="md-fling" aria-label="Filter">
+                <md-fab-trigger>
+                    <md-button aria-label="filter" class="md-fab md-secondary">
+                        <md-icon md-svg-src="/icons/filter.svg"></md-icon>
+                    </md-button>
+                </md-fab-trigger>
+                <md-fab-actions>
+                    <md-button aria-label="All" class="md-fab md-raised md-mini" ng-click="currentFilter = ''">
+                        <md-icon md-svg-src="/icons/filter-none.svg" aria-label="All"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Images" class="md-fab md-raised md-mini" ng-click="currentFilter = 'image'">
+                        <md-icon md-svg-src="/icons/image.svg" aria-label="Image"></md-icon>
+                    </md-button>
+                    <md-button aria-label="Videos" class="md-fab md-raised md-mini" ng-click="currentFilter = 'video'">
+                        <md-icon md-svg-src="/icons/video.svg" aria-label="Video"></md-icon>
+                    </md-button>
+                </md-fab-actions>
+            </md-fab-speed-dial>
+        </div>
+    </md-toolbar>
+</md-content>
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-toolbar class="md-accent">
+        <div class="md-toolbar-tools">
+            <h3>Galleries</h3>
+        </div>
+    </md-toolbar>
+    <md-content ng-repeat="directory in galleries">
+        <md-button ng-click="getFiles(directory.path)">
+            <md-icon md-svg-icon="/icons/photo_library.svg"></md-icon>
+            {{directory.name}}
+        </md-button>
+    </md-content>
+</md-sidenav>
+
+<div layout="row" layout-sm="column" layout-align="space-around" ng-show="loading">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<md-content layout-padding>
+    <md-grid-list
+    md-cols-gt-md="8" md-cols="3" md-cols-md="8"
+    md-row-height-gt-md="1:1" md-row-height="4:3"
+    md-gutter-gt-md="16px" md-gutter-md="8px" md-gutter="4px">
+        <md-grid-tile
+        ng-repeat="file in files | filter: {type: currentFilter} || !currentFilter"
+        md-colspan-gt-sm="1"
+        md-rowspan-gt-sm="1"
+        ng-style="getBackgroundImage(file.thumb)"
+        ng-click="showPanel(file)">
+            <md-grid-tile-footer>
+                <md-icon md-svg-icon="/icons/{{file.type}}.svg" />
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+</md-content>
