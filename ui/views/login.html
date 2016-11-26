@@ -6,15 +6,15 @@
     </div>
   </md-toolbar>
 </md-content>
-<div layout="column" layout-align="center center">
-  <form name="login">
+<div layout="column" layout-align="center center" ng-controller="LoginController as ctrl">
+  <form name="login" ng-submit="performLogin()">
     <md-input-container class="md-block">
       <label>Username</label>
-      <input required md-no-asterisk name="username" ng-model="loginModel.username">
+      <input required md-no-asterisk name="username" ng-model="username">
     </md-input-container>
     <md-input-container class="md-block">
       <label>Password</label>
-      <input type="password" required md-no-asterisk name="password" ng-model="loginModel.password">
+      <input type="password" required md-no-asterisk name="password" ng-model="password">
     </md-input-container>
     <div>
       <md-button type="submit">LOGIN</md-button>

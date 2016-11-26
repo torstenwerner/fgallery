@@ -4,8 +4,10 @@
   "description": "File-system based gallery",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.13.4",
     "fs": "^0.0.2",
+    "jsonwebtoken": "^7.1.9",
     "path": "^0.12.7"
   },
   "devDependencies": {

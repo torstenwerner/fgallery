@@ -24,6 +24,10 @@ gulp.task('moveDeps', function() {
     // angular-router
     gulp.src(path.join(origin, 'angular-route', 'angular-route.js'))
     .pipe(gulp.dest(destinationJS));
+
+    // ngstorage
+    gulp.src(path.join(origin, 'ngstorage', 'ngStorage.js'))
+    .pipe(gulp.dest(destinationJS));
     
     // angular-material
     gulp.src(path.join(origin, 'angular-material', 'angular-material.js'))

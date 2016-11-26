@@ -3,7 +3,15 @@ var config = {
     api: '/v1',
     galleryRoot: './gallery',
     thumbsDir: 'thumbs',
-    galleryEntryPoint: '/images'
+    galleryEntryPoint: '/images',
+
+
+    authentication: {
+        enabled: true,
+        secretKey: 'secretKey',
+        expiresIn: 60*60*24,
+
+    }
 };
 
 module.exports = config;
