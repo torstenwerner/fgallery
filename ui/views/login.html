@@ -16,6 +16,11 @@
       <label>Password</label>
       <input type="password" required md-no-asterisk name="password" ng-model="password">
     </md-input-container>
+
+    <div ng-show="invalidData" style="color: red">
+      Wrong username or password
+    </div>
+
     <div>
       <md-button type="submit">LOGIN</md-button>
     </div>

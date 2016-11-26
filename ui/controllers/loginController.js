@@ -5,7 +5,6 @@
         $scope.invalidData = false;
 
         $scope.performLogin = function() {
-            debugger;
             LoginService.authenticate($scope.username, $scope.password).then(function(res, err) {
                 if (err) {
                     $scope.invalidData = true;

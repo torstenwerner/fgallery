@@ -9,10 +9,10 @@ var bodyParser = require('body-parser');
 (function Api () {
     var app = express();
     var router = express.Router();
+    app.use('/', express.static(app.settings.env === "production" ? "www" : "ui"));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use(configuration.api, router);
-    app.use('/', express.static(app.settings.env === "production" ? "www" : "ui"));
     app.use(configuration.galleryEntryPoint, express.static(configuration.galleryRoot));
     
 
