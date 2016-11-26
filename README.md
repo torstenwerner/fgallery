@@ -34,3 +34,15 @@ It's not amazing but it works.
 ## Demo
 
 A demo is available [here](http://fgallery.selectstarfrom.space/).
+
+## Authentication
+Authentication is activated by default. You can however turn it off by editing config.js and setting authentication.enabled to false.
+
+Users are stored in user.json.
+
+You can create a new user easily by executing scripts/createUser.sh. It will return a JSON that you can add manually to users.json (I know: boooooring. I might improve it in the future.)
+```bash
+$  bash ./scripts/createUser.sh test testpassword
+```
+
+Please notice that the command itself is prefixed by a space. This way it will not be logged to bash history and your password will be safe.
