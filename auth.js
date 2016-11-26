@@ -11,9 +11,9 @@ function Auth() {
             throw new Error('Username or password not provided');
         
         var users = JSON.parse(fs.readFileSync('users.json', 'utf8'));
+        var hashedPassword = crypto.createHash('sha256').update(password, 'utf8').digest('hex');
         
         users = users.filter(function(user) {
-            var hashedPassword = crypto.createHash('sha256').update(password, 'utf8').digest('hex');
             return user.username == username && user.password == hashedPassword;
         });
 
