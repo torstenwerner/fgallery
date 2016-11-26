@@ -15,7 +15,7 @@ var bodyParser = require('body-parser');
     app.use(configuration.api, router);
     app.use(configuration.galleryEntryPoint, express.static(configuration.galleryRoot));
     
-
+    // NOT AUTHENTICATED ROUTES
     router
     .route('/auth')
     .post(auth.authenticate);
@@ -23,6 +23,8 @@ var bodyParser = require('body-parser');
     if (configuration.authentication.enabled) {
         router.use(auth.checkAuthentication);
     }
+
+    // AUTHENTICATED ROUTES
     
     router
     .route('/list')
