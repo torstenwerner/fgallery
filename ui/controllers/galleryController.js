@@ -48,7 +48,7 @@
                 position: $mdPanel.newPanelPosition().absolute().center(),
                 trapFocus: true,
                 zIndex: 150,
-                clickOutsideToClose: false, // will enable it, just have to figure out why sometimes it doesn't work
+                clickOutsideToClose: true, // will enable it, just have to figure out why sometimes it doesn't work
                 escapeToClose: true,
                 focusOnOpen: true,
                 fileObject: file
