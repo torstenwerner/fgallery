@@ -49,7 +49,7 @@
                 trapFocus: true,
                 zIndex: 150,
                 clickOutsideToClose: false, // will enable it, just have to figure out why sometimes it doesn't work
-                escapeToClose: false,
+                escapeToClose: true,
                 focusOnOpen: true,
                 fileObject: file
             });
