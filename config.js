@@ -7,7 +7,7 @@ var config = {
 
 
     authentication: {
-        enabled: true,
+        enabled: false,
         secretKey: 'secretKey',
         expiresIn: 60*60*24,
 
