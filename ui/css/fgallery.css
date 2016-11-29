@@ -30,3 +30,7 @@ body {
     text-transform: uppercase;
     font-style: italic;
 }
+
+.fgallery-clickable {
+    cursor: pointer;
+}
