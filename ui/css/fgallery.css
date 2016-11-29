@@ -34,3 +34,7 @@ body {
 .fgallery-clickable {
     cursor: pointer;
 }
+
+.fgallery-tile-footer {
+    background: transparent;
+}
