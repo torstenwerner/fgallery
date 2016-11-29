@@ -21,3 +21,12 @@ body {
     max-height: 95vh;
     cursor: pointer;
 }
+
+.fgallery-tooltip {
+    font-size: 20px;
+}
+
+.gallery-name {
+    text-transform: uppercase;
+    font-style: italic;
+}

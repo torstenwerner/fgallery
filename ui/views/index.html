@@ -2,9 +2,10 @@
     <md-toolbar layout="row" md-scroll-shrink="true">
         <div class="md-toolbar-tools blue">
             <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleNav()">
+                <md-tooltip class="fgallery-tooltip">Die Liste aller Galerien anzeigen.</md-tooltip>
                 <md-icon md-svg-icon="/icons/menu.svg" />
             </md-button>
-            <span id="title-gallery">Gallery</span>
+            <span id="title-gallery">Fotogalerie</span>
             <span id="current-gallery" hide show-xl>
                     {{currentDir | slashify}}
             </span>
@@ -34,11 +35,12 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
     <md-toolbar class="md-accent">
         <div class="md-toolbar-tools">
-            <h3>Galleries</h3>
+            <h3>Alle Galerien</h3>
         </div>
     </md-toolbar>
     <md-content ng-repeat="directory in galleries">
         <md-button ng-click="getFiles(directory.path)">
+            <md-tooltip class="fgallery-tooltip" md-direction="right">Die Galerie <span class="gallery-name">{{directory.name}}</span> öffnen.</md-tooltip>
             <md-icon md-svg-icon="/icons/photo_library.svg"></md-icon>
             {{directory.name}}
         </md-button>
