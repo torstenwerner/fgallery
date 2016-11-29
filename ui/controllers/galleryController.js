@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel) {
+    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel, $timeout) {
         $scope.currentDir = "";
         $scope.currentFilter = "";
         $scope.loading = false;
@@ -14,7 +14,12 @@
         $scope.toggleNav = function() {
             $mdSidenav('left').toggle();
         }
-        
+
+        // open sidenav on page loading
+        $timeout(function() {
+            $mdSidenav('left').open();
+        });
+
         $scope.getFiles = function(dir) {
             GalleryService.getFiles(dir)
             .then(function(res) {
@@ -58,6 +63,6 @@
     
     angular.module('fgallery-controllers').controller(
         'GalleryController',
-        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', galleryController ]
+        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', '$timeout', galleryController ]
     );
 })();
