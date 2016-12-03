@@ -11,6 +11,18 @@ It's composed of three parts:
 * nodejs
 * npm
 
+## Running
+
+Execute
+```
+npm install
+```
+to download the dependencies. And execute
+```
+npm run
+```
+to start the server and open the application in the browser.
+
 ## Components
 ### bash scripts
 There are two bash scripts that generate the thumbnails for media files. One is called *images-thumbnail* and the other one is *videos-thumbnail*. They're nothing but wrappers around *convert* (imagemagick) and *ffmpeg* respectively.
