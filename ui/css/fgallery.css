@@ -17,8 +17,10 @@ body {
 }
 
 .photo-panel-img {
-    max-width: 95vh; 
+    max-width: 100vw;
     max-height: 95vh;
+    width: auto;
+    height: auto;
     cursor: pointer;
 }
 
