@@ -31,6 +31,8 @@
             $scope.files = null;
             $scope.loading = true;
             $mdSidenav('left').toggle();
+
+            document.documentElement.webkitRequestFullscreen();
         }
 
         $scope.getBackgroundImage = function(path) {
