@@ -14,14 +14,9 @@
             mdPanelRef.destroy();
         }
 
-        this.prev = function() {
+        this.navigate = function(file) {
             this.close();
-            mdPanelRef.config.showPanel(this.file.prev);
-        }
-
-        this.next = function() {
-            this.close();
-            mdPanelRef.config.showPanel(this.file.next);
+            mdPanelRef.config.showPanel(file);
         }
     };
     
