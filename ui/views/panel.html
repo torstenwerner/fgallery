@@ -17,8 +17,8 @@
         </md-button>
     </md-toolbar>
     <div class="fgallery-clickable" layout="row" >
-        <md-tooltip class="fgallery-tooltip">Bild in neuem Reiter öffnen.</md-tooltip>
-        <img flex class="photo-panel-img" alt="photo" ng-src="{{ctrl.file.name}}" ng-click="ctrl.open(ctrl.file.name)" ng-show="ctrl.file.type == 'image'">
-        <video flex class="photo-panel-img" alt="video" ng-src="{{ctrl.file.name}}" ng-click="ctrl.open(ctrl.file.name)" ng-show="ctrl.file.type == 'video'" controls>
+        <md-tooltip class="fgallery-tooltip">Nächstes Bild oder Video.</md-tooltip>
+        <img flex class="photo-panel-img" alt="photo" ng-src="{{ctrl.file.name}}" ng-click="ctrl.next()" ng-show="ctrl.file.type == 'image'">
+        <video flex class="photo-panel-img" alt="video" ng-src="{{ctrl.file.name}}" ng-click="ctrl.next()" ng-show="ctrl.file.type == 'video'" controls>
     </div>
 </div>

@@ -23,10 +23,6 @@
             this.close();
             mdPanelRef.config.showPanel(this.file.next);
         }
-
-        this.open = function(image) {
-            window.open(image);
-        }
     };
     
     angular.module('fgallery-controllers').controller(
