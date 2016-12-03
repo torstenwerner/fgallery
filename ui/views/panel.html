@@ -1,8 +1,16 @@
 <div role="dialog" aria-label="Photo" layout="column" layout-align="center center">
     <md-toolbar layout="row">
         <div class="md-toolbar-tools">
-            <h2>{{ctrl.file.name}}</h2>
+            <h2>{{ctrl.nameonly}}</h2>
         </div>
+        <md-button ng-click="ctrl.prev()" aria-label="Previous" ng-if="ctrl.file.prev">
+            <md-tooltip class="fgallery-tooltip" md-direction="right">Vorhergehendes Bild</md-tooltip>
+            <md-icon md-svg-icon="/icons/back.svg"></md-icon>
+        </md-button>
+        <md-button ng-click="ctrl.next()" aria-label="Next" ng-if="ctrl.file.next">
+            <md-tooltip class="fgallery-tooltip" md-direction="right">Nächstes Bild</md-tooltip>
+            <md-icon md-svg-icon="/icons/next.svg"></md-icon>
+        </md-button>
         <md-button ng-click="ctrl.close()" aria-label="Close">
             <md-tooltip class="fgallery-tooltip" md-direction="right">Schließen</md-tooltip>
             <md-icon md-svg-icon="/icons/close.svg"></md-icon>

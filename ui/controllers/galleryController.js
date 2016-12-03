@@ -56,7 +56,8 @@
                 clickOutsideToClose: true, // will enable it, just have to figure out why sometimes it doesn't work
                 escapeToClose: true,
                 focusOnOpen: true,
-                fileObject: file
+                fileObject: file,
+                showPanel: $scope.showPanel
             });
         }
     };
