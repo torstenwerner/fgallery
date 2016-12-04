@@ -21,12 +21,23 @@
             $mdSidenav('left').open();
         });
 
+        function preloadImage(file) {
+            if (!file) {
+                return;
+            }
+            $timeout(function() {
+                const preloadNextImage = new Image();
+                preloadNextImage.src = file.name;
+            });
+        }
+
         $scope.getFiles = function(dir) {
             GalleryService.getFiles(dir)
             .then(function(res) {
                 $scope.files = res.data;
                 $scope.currentDir = dir;
                 $scope.loading = false;
+                preloadImage($scope.files[0]);
             });
             
             $scope.files = null;
@@ -66,6 +77,7 @@
                 fileObject: file,
                 showPanel: $scope.showPanel
             });
+            preloadImage(file.next);
         }
 
         $scope.toggleFullscreen = function() {
