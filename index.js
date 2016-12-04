@@ -8,7 +8,11 @@ server.listen(configuration.port, function () {
         console.log('Running on ' + url);
 
         const chromeOnMac = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+        const chromium = '/usr/bin/chromium-browser';
+
         if (fs.existsSync(chromeOnMac)) {
-                spawn(chromeOnMac, ['--start-fullscreen', url]);
-        }
+                spawn(chromeOnMac, [url]);
+        } else if (fs.existsSync(chromium)) {
+                spawn(chromium, [url]);
+	}
 });
