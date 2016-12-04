@@ -11,6 +11,7 @@ let imQueue = [];
 function enqueueIm(taskArray) {
     if (imInstances == 0) {
         imInstances ++;
+        console.log('start immediatly', taskArray);
         timers.setImmediate(im.convert, taskArray, imCallback);
     } else {
         imQueue.push(taskArray);
@@ -18,10 +19,12 @@ function enqueueIm(taskArray) {
 }
 
 function imCallback(err, stdout) {
+    console.log('finished');
     imInstances --;
     if (imInstances == 0 && imQueue.length > 0) {
         const taskArray = imQueue.shift();
         imInstances ++;
+        console.log('start delayed', taskArray);
         timers.setImmediate(im.convert, taskArray, imCallback);
     }
     if (err) throw err;
