@@ -5,26 +5,23 @@ const timers = require('timers');
 const im = require('imagemagick');
 const mkdirp = require('mkdirp');
 
-let imInstances = 0;
-let imQueue = [];
+let convertInstances = 0;
+let convertQueue = [];
 
 function enqueueIm(taskArray) {
-    if (imInstances == 0) {
-        imInstances ++;
-        console.log('start immediatly', taskArray);
+    if (convertInstances == 0) {
+        convertInstances ++;
         timers.setImmediate(im.convert, taskArray, imCallback);
     } else {
-        imQueue.push(taskArray);
+        convertQueue.push(taskArray);
     }
 }
 
 function imCallback(err, stdout) {
-    console.log('finished');
-    imInstances --;
-    if (imInstances == 0 && imQueue.length > 0) {
-        const taskArray = imQueue.shift();
-        imInstances ++;
-        console.log('start delayed', taskArray);
+    convertInstances --;
+    if (convertInstances == 0 && convertQueue.length > 0) {
+        const taskArray = convertQueue.shift();
+        convertInstances ++;
         timers.setImmediate(im.convert, taskArray, imCallback);
     }
     if (err) throw err;
@@ -51,19 +48,32 @@ function checkOrCreateThumbnail(relative, thumbPath) {
     }
 }
 
+let identifyInstances = 0;
+let identifyQueue = [];
+
 function createScaledImage(imageAbsolute, scaledImageAbsolute, noScaledImageAbsolute) {
-    im.identify(imageAbsolute, function(err, features) {
-        if (err) throw err;
-        if (features.width > 2 * 1920 || features.height > 2 * 1080) {
-            const dirname = path.dirname(scaledImageAbsolute);
-            mkdirp(dirname, mkdirpCallback);
-            enqueueIm([imageAbsolute, '-resize', '50%', scaledImageAbsolute]);
-        } else {
-            const dirname = path.dirname(noScaledImageAbsolute);
-            mkdirp(dirname, mkdirpCallback);
-            fs.createWriteStream(noScaledImageAbsolute);
-        }
-    });
+    if (identifyInstances == 0) {
+        identifyInstances ++;
+        im.identify(imageAbsolute, function(err, features) {
+            identifyInstances --;
+            if (err) throw err;
+            if (features.width > 2 * 1920 || features.height > 2 * 1080) {
+                const dirname = path.dirname(scaledImageAbsolute);
+                mkdirp(dirname, mkdirpCallback);
+                enqueueIm([imageAbsolute, '-resize', '50%', scaledImageAbsolute]);
+            } else {
+                const dirname = path.dirname(noScaledImageAbsolute);
+                mkdirp(dirname, mkdirpCallback);
+                fs.createWriteStream(noScaledImageAbsolute);
+            }
+            if (identifyQueue.length > 0) {
+                const task = identifyQueue.shift();
+                createScaledImage(task[0], task[1], task[2]);
+            }
+        });
+    } else {
+        identifyQueue.push([imageAbsolute, scaledImageAbsolute, noScaledImageAbsolute]);
+    }
 }
 
 function getRelativeImagePath(relative) {
