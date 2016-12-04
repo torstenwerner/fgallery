@@ -5,7 +5,25 @@ const timers = require('timers');
 const im = require('imagemagick');
 const mkdirp = require('mkdirp');
 
+let imInstances = 0;
+let imQueue = [];
+
+function enqueueIm(taskArray) {
+    if (imInstances == 0) {
+        imInstances ++;
+        timers.setImmediate(im.convert, taskArray, imCallback);
+    } else {
+        imQueue.push(taskArray);
+    }
+}
+
 function imCallback(err, stdout) {
+    imInstances --;
+    if (imInstances == 0 && imQueue.length > 0) {
+        const taskArray = imQueue.shift();
+        imInstances ++;
+        timers.setImmediate(im.convert, taskArray, imCallback);
+    }
     if (err) throw err;
 }
 
@@ -16,7 +34,7 @@ function mkdirpCallback(err) {
 function createThumbnail(absoluteImage, absoluteThumb) {
     const dirname = path.dirname(absoluteThumb);
     mkdirp(dirname, mkdirpCallback);
-    im.convert([absoluteImage, '-resize', '120x120', absoluteThumb], imCallback);
+    enqueueIm([absoluteImage, '-resize', '120x120', absoluteThumb]);
 }
 
 /**
@@ -26,18 +44,17 @@ function checkOrCreateThumbnail(relative, thumbPath) {
     const absoluteThumb = path.join(config.galleryRoot, thumbPath);
     if (!fs.existsSync(absoluteThumb)) {
         const absoluteImage = path.join(config.galleryRoot, relative);
-        timers.setImmediate(createThumbnail, absoluteImage, absoluteThumb);
+        createThumbnail(absoluteImage, absoluteThumb);
     }
 }
 
 function createScaledImage(imageAbsolute, scaledImageAbsolute, noScaledImageAbsolute) {
-    console.log(imageAbsolute, scaledImageAbsolute, noScaledImageAbsolute);
     im.identify(imageAbsolute, function(err, features) {
         if (err) throw err;
         if (features.width > 2 * 1920 || features.height > 2 * 1080) {
             const dirname = path.dirname(scaledImageAbsolute);
             mkdirp(dirname, mkdirpCallback);
-            im.convert([imageAbsolute, '-resize', '50%', scaledImageAbsolute], imCallback);
+            enqueueIm([imageAbsolute, '-resize', '50%', scaledImageAbsolute]);
         } else {
             const dirname = path.dirname(noScaledImageAbsolute);
             mkdirp(dirname, mkdirpCallback);
@@ -64,7 +81,7 @@ function getRelativeImagePath(relative) {
         return relative;
     }
 
-    timers.setImmediate(createScaledImage, imageAbsolute, scaledImageAbsolute, noScaledImageAbsolute);
+    createScaledImage(imageAbsolute, scaledImageAbsolute, noScaledImageAbsolute);
 
     return relative;
 }
