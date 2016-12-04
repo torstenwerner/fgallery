@@ -5,6 +5,7 @@ function Gallery() {
     var fs = require('fs');
     var path = require('path');
     var fullRoot = path.resolve(configuration.galleryRoot);
+    const convert = require('./image-convert');
     
     _gallery.isInRoot = function(candidate) {
         candidate = path.resolve(candidate);
@@ -16,7 +17,10 @@ function Gallery() {
         var extension = path.extname(relative);
         var fileName = path.basename(relative, extension);
 
-        return path.join(path.dirname(relative), configuration.thumbsDir, extension.replace('.', ''), fileName + ".jpg");
+        const thumbPath = path.join(path.dirname(relative), configuration.thumbsDir, extension.replace('.', ''), fileName + ".jpg");
+        convert.checkOrCreateThumbnail(relative, thumbPath);
+
+        return thumbPath;
     }
 
     _gallery.buildList = function(dir, files) {
