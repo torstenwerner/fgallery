@@ -19,10 +19,13 @@ function createThumbnail(absoluteImage, absoluteThumb) {
     im.convert([absoluteImage, '-resize', '120x120', absoluteThumb], imCallback);
 }
 
+/**
+ * Check if the thumbnail exists and create it asynchronously if missing.
+ */
 function checkOrCreateThumbnail(relative, thumbPath) {
-    const absoluteImage = path.join(config.galleryRoot, relative);
     const absoluteThumb = path.join(config.galleryRoot, thumbPath);
     if (!fs.existsSync(absoluteThumb)) {
+        const absoluteImage = path.join(config.galleryRoot, relative);
         timers.setImmediate(createThumbnail, absoluteImage, absoluteThumb);
     }
 }
