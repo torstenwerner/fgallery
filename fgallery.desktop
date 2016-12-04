@@ -1,0 +1,9 @@
+# Edit this file and put into your ~/.config/autostart/ folder.
+
+[Desktop Entry]
+Comment=
+Exec=npm start
+Icon=gallery
+Name=fgallery
+Path=/home/pi/fgallery
+Type=Application
