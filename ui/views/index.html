@@ -10,6 +10,12 @@
                     {{currentDir | slashify}}
             </span>
             <span flex></span>
+            <md-button aria-label="filter" ng-click="toggleFullscreen()">
+                <md-tooltip class="fgallery-tooltip">Vollbildmodus wechseln.</md-tooltip>
+                <md-icon md-svg-src="/icons/filter-none.svg"></md-icon>
+            </md-button>
+
+            <!--
             <md-fab-speed-dial md-open="false" md-direction="left" class="md-scale" ng-class="md-fling" aria-label="Filter">
                 <md-fab-trigger>
                     <md-button aria-label="filter" class="md-fab md-secondary">
@@ -28,6 +34,8 @@
                     </md-button>
                 </md-fab-actions>
             </md-fab-speed-dial>
+            -->
+
         </div>
     </md-toolbar>
 </md-content>

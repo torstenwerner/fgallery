@@ -5,6 +5,7 @@
         $scope.currentDir = "";
         $scope.currentFilter = "";
         $scope.loading = false;
+        $scope.freshlyStarted = true;
 
         GalleryService.getAvailableGalleries()
         .then(function(res) {
@@ -32,7 +33,11 @@
             $scope.loading = true;
             $mdSidenav('left').toggle();
 
-            document.documentElement.webkitRequestFullscreen();
+            if ($scope.freshlyStarted) {
+                // enable fullscreen on first click
+                document.documentElement.webkitRequestFullscreen();
+                $scope.freshlyStarted = false;
+            }
         }
 
         $scope.getBackgroundImage = function(path) {
@@ -61,6 +66,14 @@
                 fileObject: file,
                 showPanel: $scope.showPanel
             });
+        }
+
+        $scope.toggleFullscreen = function() {
+            if (document.webkitIsFullScreen) {
+                document.webkitExitFullscreen();
+            } else {
+                document.documentElement.webkitRequestFullscreen();
+            }
         }
     };
     
