@@ -32,6 +32,7 @@ function Gallery() {
             var relative = fullPath.substring(configuration.galleryRoot.length-1);
             
             var type;
+            let scaledRelative = relative;
             switch (path.extname(file).replace('.', '')) {
                 case 'webm':
                 case 'mp4':
@@ -41,11 +42,12 @@ function Gallery() {
                     break;
                 default:
                     type = 'image';
+                    scaledRelative = convert.getRelativeImagePath(relative);
                     break;
             }
             
             ret.push({
-                        name: path.join(configuration.galleryEntryPoint, path.join(relative)),
+                        name: path.join(configuration.galleryEntryPoint, path.join(scaledRelative)),
                         thumb: path.join(configuration.galleryEntryPoint, _gallery.buildThumbPath(relative)),
                         type: type
             });
@@ -57,7 +59,8 @@ function Gallery() {
     _gallery.buildDirectoriesList = function(dir) {
         var ret = [];
         var files = fs.readdirSync(dir).filter(function(file) {
-                return fs.statSync(path.join(dir, file)).isDirectory() && file != configuration.thumbsDir;
+                return fs.statSync(path.join(dir, file)).isDirectory() && file != configuration.thumbsDir &&
+                    file != 'scaled' && file != 'no-scaled';
             });
 
         for (var i = 0; i < files.length; i++) {
