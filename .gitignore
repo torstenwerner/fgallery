@@ -2,3 +2,6 @@
 gallery
 node_modules
 bower_components
+scaled/
+no-scaled/
+thumbs/

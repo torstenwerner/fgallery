@@ -1,7 +1,7 @@
 var config = {
     port: 14320,
     api: '/v1',
-    galleryRoot: './gallery',
+    galleryRoot: process.env.GALLERY_ROOT ? process.env.GALLERY_ROOT : './gallery',
     thumbsDir: 'thumbs',
     galleryEntryPoint: '/images',
 
