@@ -1,5 +1,6 @@
 .git/
+gallery/
 node_modules/
-no-scaled/
-scaled/
-thumbs/
+*/*/no-scaled/
+*/*/scaled/
+*/*/thumbs/
