@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
     var app = express();
     var router = express.Router();
     app.use('/', express.static(app.settings.env === "production" ? "www" : "ui"));
+    app.use('/node_modules', express.static("node_modules"));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use(configuration.api, router);
