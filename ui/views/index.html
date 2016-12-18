@@ -14,9 +14,10 @@
                 <md-tooltip class="fgallery-tooltip">Musik ein- oder ausschalten</md-tooltip>
                 <input id="sound" type="checkbox" ng-model="sound" ng-change="soundSwitch()"><label for="sound">Musik</label>
             </span>
+            <span class="fgallery-spacer"></span>
             <span>
                 <md-tooltip class="fgallery-tooltip">Lautstärke</md-tooltip>
-                <md-slider ng-model="volume" min="0" max="100" ng-change="soundVolume()" class="fgallery-slider">
+                <md-slider ng-model="volume" min="0" max="100" ng-change="soundVolume()" class="md-hue-1">
                 </md-slider>
             </span>
             <md-button ng-click="toggleFullscreen()" class="md-icon-button">

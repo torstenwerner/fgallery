@@ -42,10 +42,6 @@ body {
     background: transparent;
 }
 
-.fgallery-slider .md-thumb:after, .fgallery-slider .md-track-fill {
-    background-color: white !important;
-    border-color: white !important;
-}
-.fgallery-slider .md-focus-thumb, .fgallery-slider .md-focus-ring {
-    background-color: white;
+.fgallery-spacer {
+    min-width: 1em;
 }
