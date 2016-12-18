@@ -28,11 +28,20 @@
             return $http
                 .post('/v1/shutdown');
         }
-        
+
+        const sound = new Howl({
+            src: 'audio/LukHash-the_other_side.mp3',
+            autoplay: true,
+            loop: true
+        });
+        sound.play();
+
         return {
             getAvailableGalleries: getAvailableGalleries,
             getFiles: getFiles,
-            shutdown
+            shutdown,
+            soundPlay: angular.bind(sound, sound.play),
+            soundPause: angular.bind(sound, sound.pause)
         }
     };
     

@@ -10,6 +10,9 @@
                     {{currentDir | slashify}}
             </span>
             <span flex></span>
+            <span>
+                <input type="checkbox" ng-model="sound" ng-change="soundSwitch()">Musik
+            </span>
             <md-button ng-click="toggleFullscreen()">
                 <md-tooltip class="fgallery-tooltip">Vollbildmodus wechseln.</md-tooltip>
                 <md-icon md-svg-src="/icons/filter-none.svg"></md-icon>

@@ -99,6 +99,16 @@
                 .then(GalleryService.shutdown)
                 .catch(() => null);
         }
+
+        $scope.sound = true;
+
+        $scope.soundSwitch = function() {
+            if ($scope.sound) {
+                GalleryService.soundPlay();
+            } else {
+                GalleryService.soundPause();
+            }
+        }
     };
     
     angular.module('fgallery-controllers').controller(
