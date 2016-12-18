@@ -101,6 +101,7 @@
         }
 
         $scope.sound = true;
+        $scope.volume = 100;
 
         $scope.soundSwitch = function() {
             if ($scope.sound) {
@@ -109,6 +110,8 @@
                 GalleryService.soundPause();
             }
         }
+
+        $scope.soundVolume = () => GalleryService.soundVolume($scope.volume / 100.);
     };
     
     angular.module('fgallery-controllers').controller(

@@ -41,7 +41,8 @@
             getFiles: getFiles,
             shutdown,
             soundPlay: angular.bind(sound, sound.play),
-            soundPause: angular.bind(sound, sound.pause)
+            soundPause: angular.bind(sound, sound.pause),
+            soundVolume: angular.bind(sound, sound.volume)
         }
     };
     
