@@ -24,13 +24,15 @@
                 });
         }
 
-        var shutdown = function() {
+        const shutdown = function() {
             return $http
                 .post('/v1/shutdown');
         }
 
+        const AUDIO_URL = 'audio/LukHash-the_other_side.mp3';
+
         const sound = new Howl({
-            src: 'audio/LukHash-the_other_side.mp3',
+            src: AUDIO_URL,
             autoplay: true,
             loop: true
         });
