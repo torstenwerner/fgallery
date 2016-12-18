@@ -104,7 +104,8 @@ function Gallery() {
 
         shutdown: function(req, res) {
             if (config.shutdownEnabled) {
-                spawn('sudo', ['shutdown', '-h', 'now']);
+                const stopChrome = spawn('killall', ['chromium-browser']);
+                stopChrome.on('close', () => spawn('sudo', ['shutdown', '-h', 'now']));
                 res.end('shutdown initiated');
             } else {
                 console.log('shutdown rejected due to configuration');
