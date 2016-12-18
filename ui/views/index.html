@@ -16,18 +16,17 @@
             </span>
             <span>
                 <md-tooltip class="fgallery-tooltip">Lautstärke</md-tooltip>
-                <md-slider ng-model="volume" min="0" max="100" ng-change="soundVolume()">
+                <md-slider ng-model="volume" min="0" max="100" ng-change="soundVolume()" class="fgallery-slider">
                 </md-slider>
             </span>
-            <md-button ng-click="toggleFullscreen()">
+            <md-button ng-click="toggleFullscreen()" class="md-icon-button">
                 <md-tooltip class="fgallery-tooltip">Vollbildmodus wechseln.</md-tooltip>
-                <md-icon md-svg-src="/icons/filter-none.svg"></md-icon>
+                <md-icon md-svg-icon="/icons/filter-none.svg"></md-icon>
             </md-button>
-            <md-button ng-click="shutdown()">
+            <md-button ng-click="shutdown()" class="md-icon-button">
                 <md-tooltip class="fgallery-tooltip">Ausschalten.</md-tooltip>
-                <md-icon md-svg-src="/icons/power.svg"></md-icon>
+                <md-icon md-svg-icon="/icons/power.svg"></md-icon>
             </md-button>
-
         </div>
     </md-toolbar>
 </md-content>
