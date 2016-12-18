@@ -104,7 +104,7 @@ function Gallery() {
 
         shutdown: function(req, res) {
             if (config.shutdownEnabled) {
-                spawn('sudo', ['shutdown', '-h', '-now']);
+                spawn('sudo', ['shutdown', '-h', 'now']);
                 res.end('shutdown initiated');
             } else {
                 console.log('shutdown rejected due to configuration');
