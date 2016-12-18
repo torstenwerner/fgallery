@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     
-    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel, $timeout) {
+    var galleryController = function($scope, GalleryService, $mdSidenav, $mdPanel, $mdDialog, $timeout) {
         $scope.currentDir = "";
         $scope.currentFilter = "";
         $scope.loading = false;
@@ -87,10 +87,22 @@
                 document.documentElement.webkitRequestFullscreen();
             }
         }
+
+        $scope.shutdown = function() {
+            const confirmationDialog = $mdDialog.confirm({
+                title: 'Ausschalten',
+                textContent: 'Soll das Gerät wirklich ausgeschaltet werden?',
+                ok: 'Ja',
+                cancel: 'Nein'
+            })
+            $mdDialog.show(confirmationDialog)
+                .then(GalleryService.shutdown)
+                .catch(() => null);
+        }
     };
     
     angular.module('fgallery-controllers').controller(
         'GalleryController',
-        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', '$timeout', galleryController ]
+        [ '$scope', 'GalleryService', '$mdSidenav', '$mdPanel', '$mdDialog', '$timeout', galleryController ]
     );
 })();

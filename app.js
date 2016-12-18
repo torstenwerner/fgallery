@@ -39,6 +39,10 @@ var bodyParser = require('body-parser');
     .route('/directories')
     .get(gallery.listDirectories);
 
+    router
+    .route('/shutdown')
+    .post(gallery.shutdown);
+
     module.exports = app;
     
 })();

@@ -23,10 +23,16 @@
                     return response;
                 });
         }
+
+        var shutdown = function() {
+            return $http
+                .post('/v1/shutdown');
+        }
         
         return {
             getAvailableGalleries: getAvailableGalleries,
-            getFiles: getFiles
+            getFiles: getFiles,
+            shutdown
         }
     };
     

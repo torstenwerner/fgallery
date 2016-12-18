@@ -4,7 +4,7 @@ var config = {
     galleryRoot: process.env.GALLERY_ROOT ? process.env.GALLERY_ROOT : './gallery',
     thumbsDir: 'thumbs',
     galleryEntryPoint: '/images',
-
+    shutdownEnabled: false,
 
     authentication: {
         enabled: false,

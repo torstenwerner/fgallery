@@ -1,3 +1,8 @@
+'use strict';
+
+const spawn = require('child_process').spawn;
+const config = require('./config');
+
 function Gallery() {
     var _gallery = this;
     
@@ -75,7 +80,7 @@ function Gallery() {
         
         return ret;
     }
-    
+
     return {
         list: function(req, res) {
             var requestedDirectory = req.params.directory || '';
@@ -95,6 +100,16 @@ function Gallery() {
         
         listDirectories: function(req, res) {            
             res.json(_gallery.buildDirectoriesList(configuration.galleryRoot));
+        },
+
+        shutdown: function(req, res) {
+            if (config.shutdownEnabled) {
+                spawn('sudo', ['shutdown', '-h', '-now']);
+                res.end('shutdown initiated');
+            } else {
+                console.log('shutdown rejected due to configuration');
+                res.end('shutdown rejected');
+            }
         }
     }
 }
