@@ -81,6 +81,10 @@ function Gallery() {
         return ret;
     }
 
+    function shutdownDelayed() {
+        setTimeout(() => spawn('sudo', ['shutdown', '-h', 'now']), 1000);
+    }
+
     return {
         list: function(req, res) {
             var requestedDirectory = req.params.directory || '';
@@ -105,7 +109,7 @@ function Gallery() {
         shutdown: function(req, res) {
             if (config.shutdownEnabled) {
                 const stopChrome = spawn('killall', ['chromium-browser']);
-                stopChrome.on('close', () => spawn('sudo', ['shutdown', '-h', 'now']));
+                stopChrome.on('close', shutdownDelayed);
                 res.end('shutdown initiated');
             } else {
                 console.log('shutdown rejected due to configuration');
