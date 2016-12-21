@@ -89,15 +89,9 @@
         }
 
         $scope.shutdown = function() {
-            const confirmationDialog = $mdDialog.confirm({
-                title: 'Ausschalten',
-                textContent: 'Soll das Gerät wirklich ausgeschaltet werden?',
-                ok: 'Ja',
-                cancel: 'Nein'
-            })
-            $mdDialog.show(confirmationDialog)
-                .then(GalleryService.shutdown)
-                .catch(() => null);
+            if (confirm('Soll das Gerät wirklich ausgeschaltet werden?')) {
+                GalleryService.shutdown();
+            }
         }
 
         $scope.sound = true;
